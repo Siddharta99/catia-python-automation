@@ -1,0 +1,4 @@
+Parameter,Value
+Round_Locator\Inner_diameter\Sketch.2\Radius.1\Radius,2.0
+Round_Locator\Resting_Rib\EdgeFillet.1\CstEdgeRibbon.1\Radius,1.0
+Round_Locator\Resting_Rib\Pad.3\SecondLimit\Length,0.0
