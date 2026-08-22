@@ -1,0 +1,16 @@
+name,qty,material,length_mm,source_file
+Bolt,10,Steel,50,machine_log_1.csv
+Nut,25,Steel,15,machine_log_1.csv
+Washer,40,Aluminum,5,machine_log_1.csv
+Screw,5,Plastic,30,machine_log_1.csv
+Rivet,60,Steel,20,machine_log_1.csv
+Bolt,8,Steel,45,machine_log_2.csv
+Bracket,12,Aluminum,80,machine_log_2.csv
+Pin,30,Steel,25,machine_log_2.csv
+Washer,55,Aluminum,5,machine_log_2.csv
+Clip,18,Plastic,10,machine_log_2.csv
+Nut,20,Steel,15,machine_log_3.csv
+Bracket,9,Aluminum,80,machine_log_3.csv
+Screw,14,Plastic,30,machine_log_3.csv
+Rivet,45,Steel,20,machine_log_3.csv
+Pin,22,Steel,25,machine_log_3.csv
