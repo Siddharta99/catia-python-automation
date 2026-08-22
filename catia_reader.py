@@ -1,31 +1,43 @@
-import csv
+import pandas as pd
 from pycatia import catia
 
 caa = catia()
+
 document = caa.active_document
 part = document.part
 print(part.name)
 
 parameters = part.parameters
 
-def filter_parameters_by_value(parameters, keyword, max_value):
-    flagged = []
+
+def get_parameter_records(parameters):
+    """Pull every numeric parameter into a list of dicts (name, value)."""
+    records = []
     for param in parameters:
         try:
-            if keyword in param.name and isinstance(param.value, (int, float)) and not isinstance(param.value, bool) and param.value < max_value:
-                flagged.append((param.name, param.value))
+            value = param.value
+            if isinstance(value, (int, float)) and not isinstance(value, bool):
+                records.append({"parameter": param.name, "value": value})
         except:
             pass
-    return flagged
+    return records
 
-result = filter_parameters_by_value(parameters, "Radius", 2.5)
-print(result)
-result2 = filter_parameters_by_value(parameters, "Length", 10)
-print(result2)
-with open("flagged_report.csv", "w") as file:
-    writer = csv.writer(file)
-    writer.writerow(["Parameter", "Value"])
-    for parameter in result:
-        writer.writerow(parameter)
-    for parameter in result2:
-        writer.writerow(parameter)
+
+def flag_by_keyword(df, keyword, max_value):
+    """Return rows where the parameter name contains keyword and value < max_value."""
+    mask = df["parameter"].str.contains(keyword) & (df["value"] < max_value)
+    return df.loc[mask]
+
+
+# --- build the full parameter table ---
+records = get_parameter_records(parameters)
+df = pd.DataFrame(records)
+
+# --- apply flags ---
+radius_flags = flag_by_keyword(df, "Radius", 2.5)
+length_flags = flag_by_keyword(df, "Length", 10)
+
+flagged = pd.concat([radius_flags, length_flags], ignore_index=True)
+print(flagged)
+
+flagged.to_csv("flagged_report.csv", index=False)
