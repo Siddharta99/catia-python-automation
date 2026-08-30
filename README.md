@@ -18,7 +18,9 @@ CATIA automation + Python.
   several parts or machine batches, stored in `batch_data/`) into a
   single dataset using pandas, then reuses the same filtering/summary
   functions from `parts_checker.py` across all of them at once.
+  Exports results to both CSV and Excel (`.xlsx`) formats.
   Demonstrates scaling from single-part checks to project-wide analysis.
+  
 
 ## Example
 
@@ -50,7 +52,7 @@ Running `batch_processor.py` on three sample machine logs combined
 **Batch processing across multiple files:**
 1. Place CSV exports in the `batch_data/` folder
 2. Run `batch_processor.py`
-3. Check `combined_batch_report.csv` for the combined summary
+3. Check `combined_batch_report.csv` or `combined_batch_report.xlsx` for the combined summary
 
 ## Background
 
