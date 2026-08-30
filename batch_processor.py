@@ -47,3 +47,4 @@ if __name__ == "__main__":
     print(df["source_file"].value_counts())
 
     df.to_csv("combined_batch_report.csv", index=False)
+    df.to_excel("combined_batch_report.xlsx", index=False)
