@@ -11,7 +11,7 @@ parameters = part.parameters
 
 
 def get_parameter_records(parameters):
-    """Pull every numeric parameter into a list of dicts (name, value)."""
+    
     records = []
     for param in parameters:
         try:
@@ -24,12 +24,11 @@ def get_parameter_records(parameters):
 
 
 def flag_by_keyword(df, keyword, max_value):
-    """Return rows where the parameter name contains keyword and value < max_value."""
+   
     mask = df["parameter"].str.contains(keyword) & (df["value"] < max_value)
     return df.loc[mask]
 
 
-# --- build the full parameter table ---
 records = get_parameter_records(parameters)
 df = pd.DataFrame(records)
 
